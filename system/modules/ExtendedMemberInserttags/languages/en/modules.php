@@ -30,6 +30,6 @@
 /**
  * Define name and tooltip for preferences (inactive modules)
  */
-$GLOBALS['TL_LANG']['MOD']['ExtendedMemberInserttags'] = array('Extended member inserttags', 'Provides additional inserttags for members.');
+$GLOBALS['TL_LANG']['MOD']['ExtendedMemberInserttags'] = array('Extended member insert tags', 'Provides additional insert tags for members.');
 
 ?>
