@@ -116,7 +116,7 @@ class ExtendedMemberInserttags extends Controller
 					}
 					elseif ($strTag[$attributeIndex] == 'age')
 					{
-						$returnValue = date("Y") - date("Y", $member->dateOfBirth);
+						$returnValue = floor((date("Ymd") - date("Ymd", $member->dateOfBirth)) / 10000);
 					}
 					elseif ($strTag[$attributeIndex] == 'name')
 					{
