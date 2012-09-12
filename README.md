@@ -56,8 +56,9 @@ Provides all known insert tags to get information of the actual logged member (r
 ~~~~
 {{member::age}} ... This tag will be replaced with the age of the currently logged in user.
 {{member::name}} ... This tag will be replaced with the name (combination of firstname and lastname) of the currently logged in user.
-{{member::salutation}} ... This tag will be replaced with the salutation (`Mr.` or `Mrs.`) for the currently logged in user.
-{{member::welcoming}} ... This tag will be replaced with the welcoming (`Dear Mr.` or `Dear Mrs.`) for the currently logged in user.
+{{member::salutation}} ... This tag will be replaced with the salutation (`Ms` or `Mr`) for the currently logged in user.
+{{member::welcoming::formally}} ... This tag will be replaced with a formally welcoming (`Dear Ms` or `Dear Mr`) for the currently logged in user (the short form is also possible: {{member::welcoming}}).
+{{member::welcoming::personally}} ... This tag will be replaced with a personally welcoming (`Dear`) for the currently logged in user.
 ~~~~
 
 ### Improvements are

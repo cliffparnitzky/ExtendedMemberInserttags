@@ -30,10 +30,13 @@
 /**
  * defaults
  */
-$GLOBALS['TL_LANG']['MSC']['salutation_male']   = 'Herr';
-$GLOBALS['TL_LANG']['MSC']['salutation_female'] = 'Frau';
-$GLOBALS['TL_LANG']['MSC']['welcoming']         = 'Sehr geehrte/-r';
-$GLOBALS['TL_LANG']['MSC']['welcoming_male']    = 'Sehr geehrter Herr';
-$GLOBALS['TL_LANG']['MSC']['welcoming_female']  = 'Sehr geehrte Frau';
+$GLOBALS['TL_LANG']['MSC']['salutation_female']           = 'Frau';
+$GLOBALS['TL_LANG']['MSC']['salutation_male']             = 'Herr';
+$GLOBALS['TL_LANG']['MSC']['welcoming_personally']        = 'Liebe/-r';
+$GLOBALS['TL_LANG']['MSC']['welcoming_personally_female'] = 'Liebe';
+$GLOBALS['TL_LANG']['MSC']['welcoming_personally_male']   = 'Lieber';
+$GLOBALS['TL_LANG']['MSC']['welcoming_formally']          = 'Sehr geehrte/-r';
+$GLOBALS['TL_LANG']['MSC']['welcoming_formally_female']   = 'Sehr geehrte Frau';
+$GLOBALS['TL_LANG']['MSC']['welcoming_formally_male']     = 'Sehr geehrter Herr';
 
 ?>

@@ -124,16 +124,23 @@ class ExtendedMemberInserttags extends Controller
 					}
 					elseif ($strTag[$attributeIndex] == 'salutation')
 					{
-						$salutation = $GLOBALS['TL_LANG']['MSC']['salutation_' . $member->gender];
-						if (strlen($salutation) == 0)
+						$returnValue = $GLOBALS['TL_LANG']['MSC'][$strTag[$attributeIndex] . '_' . $member->gender];
+						if (strlen($returnValue) == 0)
 						{
-							$salutation = $GLOBALS['TL_LANG']['MSC']['salutation'];
+							return false;
 						}
-						$returnValue = $salutation;
 					}
 					elseif ($strTag[$attributeIndex] == 'welcoming')
 					{
-						$returnValue = $GLOBALS['TL_LANG']['MSC']['welcoming_' . $member->gender];
+						$key = $strTag[$attributeIndex] . '_formally';
+						if (count($strTag) == $attributeIndex + 2 && strlen($strTag[$attributeIndex + 1]) > 0 && $strTag[$attributeIndex + 1] == 'personally') {
+							$key = $strTag[$attributeIndex] . '_personally';
+						}
+						$returnValue = $GLOBALS['TL_LANG']['MSC'][$key . '_' . $member->gender];
+						if (strlen($returnValue) == 0)
+						{
+							$returnValue = $GLOBALS['TL_LANG']['MSC'][$key];
+						}
 					}
 					else
 					{
