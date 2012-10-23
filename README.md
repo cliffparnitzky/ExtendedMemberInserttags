@@ -19,6 +19,13 @@ Tracker
 https://github.com/cliffparnitzky/ExtendedMemberInserttags/issues
 
 
+Compatibility
+-------------
+
+- min. version: Contao 2.6.0
+- max. version: Contao 2.11.6
+
+
 Insert tags
 -----------
 
