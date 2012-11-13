@@ -26,6 +26,12 @@ Compatibility
 - max. version: Contao 2.11.6
 
 
+Dependency
+----------
+
+- There are no dependencies to other extensions, that have to be installed.
+
+
 Insert tags
 -----------
 
