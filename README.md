@@ -1,5 +1,5 @@
-Contao Extended Member Inserttags Extension
-===========================================
+Contao Extension: ExtendedMemberInserttags
+==========================================
 
 Provides additional insert tags for members.
 
@@ -23,7 +23,7 @@ Compatibility
 -------------
 
 - min. version: Contao 2.6.0
-- max. version: Contao 2.11.6
+- max. version: Contao 2.11.x
 
 
 Dependency
