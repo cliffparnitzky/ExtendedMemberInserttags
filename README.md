@@ -23,7 +23,7 @@ Compatibility
 -------------
 
 - min. version: Contao 2.6.0
-- max. version: Contao 3.1.x
+- max. version: Contao 3.2.x
 
 
 Dependency
@@ -40,38 +40,38 @@ Provides all known insert tags to get information of the actual logged member (r
 ### Known insert tags are:
 
 ~~~~
-{{member::firstname}} ... This tag will be replaced with the first name of the currently logged in user.
-{{member::lastname}} ... This tag will be replaced with the last name of the currently logged in user.
-{{member::company}} ... This tag will be replaced with the company name of the currently logged in user.
-{{member::phone}} ... This tag will be replaced with the phone number of the currently logged in user.
-{{member::mobile}} ... This tag will be replaced with the mobile number of the currently logged in user.
-{{member::fax}} ... This tag will be replaced with the fax number of the currently logged in user.
-{{member::email}} ... This tag will be replaced with the e-mail address of the currently logged in user.
-{{member::website}} ... This tag will be replaced with the web address of the currently logged in user.
-{{member::street}} ... This tag will be replaced with the street name of the currently logged in user.
-{{member::postal}} ... This tag will be replaced with the postal code of the currently logged in user.
-{{member::city}} ... This tag will be replaced with the city of the currently logged in user.
-{{member::country}} ... This tag will be replaced with the country of the currently logged in user.
-{{member::username}} ... This tag will be replaced with the username of the currently logged in user.
+{{member::firstname}} ... This tag will be replaced with the first name of the currently logged in member.
+{{member::lastname}} ... This tag will be replaced with the last name of the currently logged in member.
+{{member::company}} ... This tag will be replaced with the company name of the currently logged in member.
+{{member::phone}} ... This tag will be replaced with the phone number of the currently logged in member.
+{{member::mobile}} ... This tag will be replaced with the mobile number of the currently logged in member.
+{{member::fax}} ... This tag will be replaced with the fax number of the currently logged in member.
+{{member::email}} ... This tag will be replaced with the e-mail address of the currently logged in member.
+{{member::website}} ... This tag will be replaced with the web address of the currently logged in member.
+{{member::street}} ... This tag will be replaced with the street name of the currently logged in member.
+{{member::postal}} ... This tag will be replaced with the postal code of the currently logged in member.
+{{member::city}} ... This tag will be replaced with the city of the currently logged in member.
+{{member::country}} ... This tag will be replaced with the country of the currently logged in member.
+{{member::username}} ... This tag will be replaced with the username of the currently logged in member.
 ~~~~
 
 ### Also useful but not documented insert tags are:
 
 ~~~~
-{{member::dateOfBirth}} ... This tag will be replaced with the date of birth of the currently logged in user.
-{{member::gender}} ... This tag will be replaced with the gender of the currently logged in user.
-{{member::state}} ... This tag will be replaced with the state of the currently logged in user.
-{{member::language}} ... This tag will be replaced with the language of the currently logged in user.
+{{member::dateOfBirth}} ... This tag will be replaced with the date of birth of the currently logged in member.
+{{member::gender}} ... This tag will be replaced with the gender of the currently logged in member.
+{{member::state}} ... This tag will be replaced with the state of the currently logged in member.
+{{member::language}} ... This tag will be replaced with the language of the currently logged in member.
 ~~~~
 
 ### Additional insert tags are:
 
 ~~~~
-{{member::age}} ... This tag will be replaced with the age of the currently logged in user.
-{{member::name}} ... This tag will be replaced with the name (combination of firstname and lastname) of the currently logged in user.
-{{member::salutation}} ... This tag will be replaced with the salutation (`Ms` or `Mr`) for the currently logged in user.
-{{member::welcoming::formally}} ... This tag will be replaced with a formally welcoming (`Dear Ms` or `Dear Mr`) for the currently logged in user (the short form is also possible: {{member::welcoming}}).
-{{member::welcoming::personally}} ... This tag will be replaced with a personally welcoming (`Dear`) for the currently logged in user.
+{{member::age}} ... This tag will be replaced with the age of the currently logged in member.
+{{member::name}} ... This tag will be replaced with the name (combination of firstname and lastname) of the currently logged in member.
+{{member::salutation}} ... This tag will be replaced with the salutation (`Ms` or `Mr`) for the currently logged in member.
+{{member::welcoming::formally}} ... This tag will be replaced with a formally welcoming (`Dear Ms` or `Dear Mr`) for the currently logged in member (the short form is also possible: {{member::welcoming}}).
+{{member::welcoming::personally}} ... This tag will be replaced with a personally welcoming (`Dear`) for the currently logged in member.
 ~~~~
 
 ### Improvements are
