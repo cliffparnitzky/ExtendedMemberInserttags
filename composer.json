@@ -1,0 +1,37 @@
+{
+	"name":"cliffparnitzky/extended-member-inserttags",
+	"description":"Provides additional insert tags for members.",
+	"keywords":["contao", "inserttags", "members"],
+	"type":"contao-module",
+	"license":"LGPL-3.0+",
+	"authors":[
+		{
+			"name":"Cliff Parnitzky",
+			"email":"contao@cliff-parnitzky.de",
+			"role":"Developer"
+		}
+	],
+	"support":{
+		"email":"contao@cliff-parnitzky.de",
+		"issues":"https://github.com/cliffparnitzky/ExtendedMemberInserttags/issues",
+		"source":"https://github.com/cliffparnitzky/ExtendedMemberInserttags"
+	},
+	"require":{
+		"php":">=5.3",
+		"contao/core":">=3.2.0,<3.4.0",
+		"contao-community-alliance/composer-installer":"*"
+	},
+	"replace": {
+		"contao-legacy/extendedmemberinserttags":"*"
+	},
+	"extra":{
+		"contao":{
+			"sources":{
+				"system/modules/ExtendedMemberInserttags":"system/modules/ExtendedMemberInserttags"
+			}
+		},
+		"branch-alias": {
+			"dev-master": "2.0.x-dev"
+		}
+	}
+}
