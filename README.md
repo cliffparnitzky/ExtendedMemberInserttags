@@ -1,3 +1,7 @@
+[![Latest Version on Packagist](http://img.shields.io/packagist/v/cliffparnitzky/extended-member-inserttags.svg?style=flat)](https://packagist.org/packages/cliffparnitzky/extended-member-inserttags)
+[![Installations via composer per month](http://img.shields.io/packagist/dm/cliffparnitzky/extended-member-inserttags.svg?style=flat)](https://packagist.org/packages/cliffparnitzky/extended-member-inserttags)
+[![Installations via composer total](http://img.shields.io/packagist/dt/cliffparnitzky/extended-member-inserttags.svg?style=flat)](https://packagist.org/packages/cliffparnitzky/extended-member-inserttags)
+
 Contao Extension: ExtendedMemberInserttags
 ==========================================
 
@@ -7,10 +11,9 @@ Provides additional insert tags for members.
 Installation
 ------------
 
-The extension can be installed using the Contao extension manager in the Contao
-back end. If you prefer to install it manually, download the files here:
+Install the extension via composer: [cliffparnitzky/extended-member-inserttags](https://packagist.org/packages/cliffparnitzky/extended-member-inserttags).
 
-http://www.contao.org/en/extension-list/view/ExtendedMemberInserttags.html
+If you prefer to install it manually, download the latest release here: https://github.com/cliffparnitzky/ExtendedMemberInserttags/releases
 
 
 Tracker
@@ -22,8 +25,8 @@ https://github.com/cliffparnitzky/ExtendedMemberInserttags/issues
 Compatibility
 -------------
 
-- min. version: Contao 2.6.0
-- max. version: Contao 3.2.x
+- min. version: Contao 3.2.0
+- max. version: Contao 3.3.x
 
 
 Dependency
