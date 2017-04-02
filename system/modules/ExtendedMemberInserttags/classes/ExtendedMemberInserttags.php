@@ -76,7 +76,7 @@ class ExtendedMemberInserttags extends \Controller
 				}
 				
 				if ($member != null) {
-					$value = $member->$strTag[$attributeIndex];
+					$value = $member->{$strTag[$attributeIndex]};
 
 					$this->loadDataContainer('tl_member');
 
