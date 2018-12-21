@@ -25,14 +25,14 @@ https://github.com/cliffparnitzky/ExtendedMemberInserttags/issues
 Compatibility
 -------------
 
-- min. Contao version: >= 3.2.0
-- max. Contao version: <  3.6.0
+- Contao version >= 3.2.0 ... <  3.6.0
+- Contao version >= 4.4.0
 
 
 Dependency
 ----------
 
-- There are no dependencies to other extensions, that have to be installed.
+There are no dependencies to other extensions, that have to be installed.
 
 
 Insert tags
