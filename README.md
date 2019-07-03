@@ -73,12 +73,13 @@ Provides all known insert tags to get information of the actual logged member (r
 
 ### Improvements are
 
-- For properties with regular expression of `date` / `time` / `datim` (defined in eval array of DCA config) a custom dateformat could be set (e.g. `{{member::dateOfBirth::d. M Y}}` will be replaced with `14. Nov 1991`). If no custom format was found, the systems default will be used.
-- For properties of datatype `array` and existing foreign key (defined in DCA config) the text values will be read from database (e.g. `{{member::groups}}` will be replaced with `Piano Students, Violin Students`). Additionally define a separator to be used for concating the values (e.g. `{{member::groups:: / }}`will be replaced with `Piano Students / Violin Students`)
+For properties with regular expression of `date` / `time` / `datim` (defined in eval array of DCA config) a custom dateformat could be set (e.g. `{{member::dateOfBirth::d. M Y}}` will be replaced with `14. Nov 1991`). If no custom format was found, the systems default will be used.
+
+For properties of datatype `array` and existing foreign key (defined in DCA config) the text values will be read from database (e.g. `{{member::groups}}` will be replaced with `Piano Students, Violin Students`). Additionally define a separator to be used for concating the values (e.g. `{{member::groups:: / }}`will be replaced with `Piano Students / Violin Students`)
 
 ### Feature
 
-- Each inserttag can be extended with the id of a special member to get the information about it. To use this feature add the id to the insert tags `{{member::ID::FIELDNAME}}`, e.g.:
+Each inserttag can be extended with the id of a special member to get the information about it. To use this feature add the id to the insert tags `{{member::ID::FIELDNAME}}`, e.g.:
 
 - `{{member::3::name}}` ... This tag will be replaced with the name of the member with id `3`.
 - `{{member::27:email}}` ... This tag will be replaced with the e-mail address of the member with id `27`.
