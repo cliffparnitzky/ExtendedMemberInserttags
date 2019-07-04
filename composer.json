@@ -3,7 +3,7 @@
 	"description":"Provides additional insert tags for members.",
 	"keywords":["contao", "inserttags", "members"],
 	"type":"contao-module",
-	"license":"LGPL-3.0+",
+	"license":"LGPL-3.0-or-later",
 	"authors":[
 		{
 			"name":"Cliff Parnitzky",
@@ -18,8 +18,8 @@
 	},
 	"require":{
 		"php":">=5.3",
-		"contao/core":">=3.2.0,<3.6",
-		"contao-community-alliance/composer-plugin":"~2.0"
+		"contao/core-bundle":"~3.2 || ~4.4",
+		"contao-community-alliance/composer-plugin":"~2.4 || ~3.0"
 	},
 	"conflict": {
 		"contao/core":"3.4.0,3.4.1,3.4.2"
