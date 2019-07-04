@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Cliff Parnitzky 2012-2015
+ * @copyright  Cliff Parnitzky 2012-2019
  * @author     Cliff Parnitzky
  * @package    ExtendedMemberInserttags
  * @license    LGPL
@@ -36,149 +36,160 @@ namespace ExtendedMemberInserttags;
  * Class ExtendedMemberInserttags
  *
  * InsertTag hook class.
- * @copyright  Cliff Parnitzky 2012-2015
+ * @copyright  Cliff Parnitzky 2012-2019
  * @author     Cliff Parnitzky
  * @package    Controller
  */
 class ExtendedMemberInserttags extends \Controller
 {
-	public function __construct()
-	{
-		parent::__construct();
-		$this->import('Database');
-	}
-	
-	/**
-	 * Replaces the additional member inserttags
-	 */
-	public function replaceExtendedMemberInserttags($strTag)
-	{
-		$strTag = explode('::', $strTag);
-		switch ($strTag[0])
-		{
-			case 'member':
-				$member = null;
-				$attributeIndex = 0;
-				if (is_numeric($strTag[1]) && intval($strTag[1]) > 0) {
-					$objMember = $this->Database->prepare("SELECT * FROM tl_member WHERE id=?")
-									   ->limit(1)
-									   ->execute($strTag[1]);
-					if ($objMember->numRows > 0 && $objMember->id == $strTag[1])
-					{
-						$member = $objMember;
-					}
-					$attributeIndex = 2;
-				
-				} elseif (FE_USER_LOGGED_IN) {
-					$this->import('FrontendUser', 'User');
-					$member = $this->User;
-					$attributeIndex = 1;
-				}
-				
-				if ($member != null) {
-					$value = $member->{$strTag[$attributeIndex]};
+  public function __construct()
+  {
+    parent::__construct();
+  }
+  
+  /**
+   * Replaces the additional member inserttags
+   */
+  public function replaceExtendedMemberInserttags($strTag)
+  {
+    $strTag = explode('::', $strTag);
+    switch ($strTag[0])
+    {
+      case 'member':
+        $member = null;
+        $attributeIndex = 0;
+        if (is_numeric($strTag[1]) && intval($strTag[1]) > 0)
+        {
+          $objMember = \MemberModel::findById($strTag[1]);
 
-					$this->loadDataContainer('tl_member');
+          if ($objMember !== null)
+          {
+            $member = $objMember;
+          }
+          $attributeIndex = 2;
+        
+        }
+        elseif (FE_USER_LOGGED_IN)
+        {
+          $this->import('FrontendUser', 'User');
+          $member = $this->User;
+          $attributeIndex = 1;
+        }
+        
+        if ($member != null)
+        {
+          $value = $member->{$strTag[$attributeIndex]};
 
-					if ($GLOBALS['TL_DCA']['tl_member']['fields'][$strTag[$attributeIndex]]['inputType'] == 'password')
-					{
-						// do not allow extracting the password
-						return "";
-					}
-					
+          $this->loadDataContainer('tl_member');
 
-					$value = deserialize($value);
-					$rgxp = $GLOBALS['TL_DCA']['tl_member']['fields'][$strTag[$attributeIndex]]['eval']['rgxp'];
-					$opts = $GLOBALS['TL_DCA']['tl_member']['fields'][$strTag[$attributeIndex]]['options'];
-					$rfrc = $GLOBALS['TL_DCA']['tl_member']['fields'][$strTag[$attributeIndex]]['reference'];
-					$fkey = $GLOBALS['TL_DCA']['tl_member']['fields'][$strTag[$attributeIndex]]['foreignKey'];
+          if ($GLOBALS['TL_DCA']['tl_member']['fields'][$strTag[$attributeIndex]]['inputType'] == 'password')
+          {
+            // do not allow extracting the password
+            return "";
+          }
+          
 
-					$returnValue = '';
-					if ($rgxp == 'date' || $rgxp == 'time' || $rgxp == 'datim')
-					{
-						$dateFormat = $GLOBALS['TL_CONFIG'][$rgxp . 'Format'];
-						// check if custom format was set
-						if (count($strTag) == $attributeIndex + 2 && strlen($strTag[$attributeIndex + 1]) > 0) {
-							$dateFormat = $strTag[$attributeIndex + 1];
-						}
-						$returnValue = $this->parseDate($dateFormat, $value);
-					}
-					elseif (is_array($value))
-					{
-						$returnValue = implode(', ', $value);
-						if (strlen($fkey) > 0)
-						{
-							$returnValue = $this->getArrayValueAsList($fkey, $returnValue);
-						}
-					}
-					elseif (is_array($opts) && array_is_assoc($opts))
-					{
-						$returnValue = isset($opts[$value]) ? $opts[$value] : $value;
-					}
-					elseif (is_array($rfrc))
-					{
-						$returnValue = isset($rfrc[$value]) ? ((is_array($rfrc[$value])) ? $rfrc[$value][0] : $rfrc[$value]) : $value;
-					}
-					elseif ($strTag[$attributeIndex] == 'age')
-					{
-						$returnValue = floor((date("Ymd") - date("Ymd", $member->dateOfBirth)) / 10000);
-					}
-					elseif ($strTag[$attributeIndex] == 'name')
-					{
-						$returnValue = $member->firstname . " " . $member->lastname;
-					}
-					elseif ($strTag[$attributeIndex] == 'salutation')
-					{
-						$returnValue = $GLOBALS['TL_LANG']['MSC'][$strTag[$attributeIndex] . '_' . $member->gender];
-						if (strlen($returnValue) == 0)
-						{
-							return false;
-						}
-					}
-					elseif ($strTag[$attributeIndex] == 'welcoming')
-					{
-						$key = $strTag[$attributeIndex] . '_formally';
-						if (count($strTag) == $attributeIndex + 2 && strlen($strTag[$attributeIndex + 1]) > 0 && $strTag[$attributeIndex + 1] == 'personally') {
-							$key = $strTag[$attributeIndex] . '_personally';
-						}
-						$returnValue = $GLOBALS['TL_LANG']['MSC'][$key . '_' . $member->gender];
-						if (strlen($returnValue) == 0)
-						{
-							$returnValue = $GLOBALS['TL_LANG']['MSC'][$key];
-						}
-					}
-					else
-					{
-						$returnValue = $value;
-					}
+          $value = deserialize($value);
+          $rgxp = $GLOBALS['TL_DCA']['tl_member']['fields'][$strTag[$attributeIndex]]['eval']['rgxp'];
+          $opts = $GLOBALS['TL_DCA']['tl_member']['fields'][$strTag[$attributeIndex]]['options'];
+          $rfrc = $GLOBALS['TL_DCA']['tl_member']['fields'][$strTag[$attributeIndex]]['reference'];
+          $fkey = $GLOBALS['TL_DCA']['tl_member']['fields'][$strTag[$attributeIndex]]['foreignKey'];
 
-					// Convert special characters (see #1890)
-					return specialchars($returnValue);
-				}
-		}
-		return false;
-	}
-	
-	/**
-	 * get all values of the given array
-	 */
-	private function getArrayValueAsList($foreignKey, $valueIds)
-	{
-		$foreignKey = explode('.', $foreignKey);
-		$table = $foreignKey[0];
-		$fieldname = $foreignKey[1];
-		if (strlen($table) > 0 && strlen($valueIds) > 0)
-		{
-			$values = $this->Database->prepare("SELECT " . $fieldname . " FROM " . $table . " WHERE id IN (" . $valueIds . ") ORDER BY name ASC")
-								->execute();
-			$list = array();
-			while ($values->next())
-			{
-				$list[] = $values->$fieldname;
-			}
-			return implode(", ", $list);
-		}
-		return "";
-	}
+          $returnValue = '';
+          if ($rgxp == 'date' || $rgxp == 'time' || $rgxp == 'datim')
+          {
+            $dateFormat = $GLOBALS['TL_CONFIG'][$rgxp . 'Format'];
+            // check if custom format was set
+            if (count($strTag) == $attributeIndex + 2 && strlen($strTag[$attributeIndex + 1]) > 0)
+            {
+              $dateFormat = $strTag[$attributeIndex + 1];
+            }
+            $returnValue = $this->parseDate($dateFormat, $value);
+          }
+          elseif (is_array($value))
+          {
+            $returnValue = implode(', ', $value);
+            if (strlen($fkey) > 0)
+            {
+              $returnValue = $this->getArrayValueAsList($fkey, $returnValue, $strTag, $attributeIndex);
+            }
+          }
+          elseif (is_array($opts) && array_is_assoc($opts))
+          {
+            $returnValue = isset($opts[$value]) ? $opts[$value] : $value;
+          }
+          elseif (is_array($rfrc))
+          {
+            $returnValue = isset($rfrc[$value]) ? ((is_array($rfrc[$value])) ? $rfrc[$value][0] : $rfrc[$value]) : $value;
+          }
+          elseif ($strTag[$attributeIndex] == 'age')
+          {
+            $returnValue = floor((date("Ymd") - date("Ymd", $member->dateOfBirth)) / 10000);
+          }
+          elseif ($strTag[$attributeIndex] == 'name')
+          {
+            $returnValue = $member->firstname . " " . $member->lastname;
+          }
+          elseif ($strTag[$attributeIndex] == 'salutation')
+          {
+            $returnValue = $GLOBALS['TL_LANG']['MSC'][$strTag[$attributeIndex] . '_' . $member->gender];
+            if (strlen($returnValue) == 0)
+            {
+              return false;
+            }
+          }
+          elseif ($strTag[$attributeIndex] == 'welcoming')
+          {
+            $key = $strTag[$attributeIndex] . '_formally';
+            if (count($strTag) == $attributeIndex + 2 && strlen($strTag[$attributeIndex + 1]) > 0 && $strTag[$attributeIndex + 1] == 'personally')
+            {
+              $key = $strTag[$attributeIndex] . '_personally';
+            }
+            $returnValue = $GLOBALS['TL_LANG']['MSC'][$key . '_' . $member->gender];
+            if (strlen($returnValue) == 0)
+            {
+              $returnValue = $GLOBALS['TL_LANG']['MSC'][$key];
+            }
+          }
+          else
+          {
+            $returnValue = $value;
+          }
+
+          // Convert special characters (see #1890)
+          return specialchars($returnValue);
+        }
+    }
+    return false;
+  }
+  
+  /**
+   * Get all values of the given array
+   */
+  private function getArrayValueAsList($foreignKey, $valueIds, $strTag, $attributeIndex)
+  {
+    $foreignKey = explode('.', $foreignKey);
+    $table = $foreignKey[0];
+    $fieldname = $foreignKey[1];
+    if (strlen($table) > 0 && strlen($valueIds) > 0)
+    {
+      $values = \Database::getInstance()->prepare("SELECT " . $fieldname . " FROM " . $table . " WHERE id IN (" . $valueIds . ") ORDER BY name ASC")
+                ->execute();
+      $list = array();
+      while ($values->next())
+      {
+        $list[] = $values->$fieldname;
+      }
+      
+      $separator = ", ";
+      if (count($strTag) == $attributeIndex + 2 && strlen($strTag[$attributeIndex + 1]) > 0)
+      {
+        $separator = $strTag[$attributeIndex + 1];
+      }
+      
+      return implode($separator, $list);
+    }
+    return "";
+  }
 }
 ?>
