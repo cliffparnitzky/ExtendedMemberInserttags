@@ -82,7 +82,7 @@ For properties of datatype `array` and existing foreign key (defined in DCA conf
 Each inserttag can be extended with the id of a special member to get the information about it. To use this feature add the id to the insert tags `{{member::ID::FIELDNAME}}`, e.g.:
 
 - `{{member::3::name}}` ... This tag will be replaced with the name of the member with id `3`.
-- `{{member::27:email}}` ... This tag will be replaced with the e-mail address of the member with id `27`.
-- `{{member::15:dateOfBirth::*}}` ... This tag will be replaced with the date of birth of the member with id `15` (with custom format).
-- `{{member::3:groups}}` ... This tag will be replaced with the groups of the member with id `3` (separated with `, `).
-- `{{member::3:groups:: / }}` ... This tag will be replaced with the groups of the member with id `3` (separated with ` / `).
+- `{{member::27::email}}` ... This tag will be replaced with the e-mail address of the member with id `27`.
+- `{{member::15::dateOfBirth::*}}` ... This tag will be replaced with the date of birth of the member with id `15` (with custom format).
+- `{{member::3::groups}}` ... This tag will be replaced with the groups of the member with id `3` (separated with `, `).
+- `{{member::3::groups:: / }}` ... This tag will be replaced with the groups of the member with id `3` (separated with ` / `).
